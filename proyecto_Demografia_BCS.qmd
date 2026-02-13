@@ -1,0 +1,29 @@
+---
+title: "proyecto_Demografia_BCS"
+author: "VELA ESPINOSA ANDRES ALEXIS"
+format: pdf
+editor: visual 
+---
+
+```{r}
+# 1. Remover los objetos
+rm(list = ls())
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+# 2. Instalar paquetes 
+install.packages("data.table", 
+                 dependencies = T)
+library(data.table)
+
+# 3. Descargar tablas de datos
+pop <- fread("https://repodatos.atdt.gob.mx/CONAPO/proyecciones/00_Pob_Mitad_1950_2070.csv")
+
+# 4. Exploración de la tabla de población
+table(pop$ENTIDAD)
+table(pop$CVE_GEO)
+table(pop$ANIO)
+
+names(pop)
+sum(pop$POBLACION)
+```
+
+![](images/clipboard-9133593.png)
