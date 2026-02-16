@@ -5,6 +5,10 @@ format: pdf
 editor: visual 
 ---
 
+#introduccion
+
+#Lectura primer objeto de la web
+
 ```{r}
 # 1. Remover los objetos
 rm(list = ls())
@@ -27,3 +31,42 @@ sum(pop$POBLACION)
 ```
 
 ![](images/clipboard-9133593.png)
+
+#Piramide poblacional del estado (parrafo con breve analisis de la piramide)
+
+```{r}
+BCS<- pop[ENTIDAD == "Baja California Sur"& ANIO  == "2026" ,.(SEXO, EDAD, POBLACION) ]
+
+# 2. Cargar ggplot2
+library(ggplot2)
+
+# 3. Preparar los datos para la pirámide
+pop_bcs <- pop[
+  ENTIDAD == "Baja California Sur" & ANIO == 2026,
+  .(SEXO, EDAD, POBLACION)
+]
+
+# 4. Convertir población masculina a valores negativos
+pop_bcs[, POBLACION := ifelse(SEXO == "Hombres", -POBLACION, POBLACION)]
+
+# 5. Graficar pirámide poblacional
+ggplot(pop_bcs, aes(x = EDAD, y = POBLACION, fill = SEXO)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_flip() +
+  scale_y_continuous(labels = abs) +
+  labs(
+    title = "Pirámide poblacional de Baja California Sur, 2026",
+    x = "Edad",
+    y = "Población"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("Hombres" = "steelblue", "Mujeres" = "salmon"))
+
+
+```
+
+##lectura de tabla
+
+El estado aún presenta una población relativamente joven, con mayor concentración en los grupos de edad entre 20 y 39 años, lo que refleja una base importante de población en edad productiva. Se observa una disminución en la tasa de natalidad en comparación con años anteriores, así como una menor proporción de población en edades avanzadas, aunque el grupo de adultos mayores comienza a incrementarse.
+
+Por ultimo, la población masculina es ligeramente mayor que la femenina, manteniendo una base equilibrada entre ambos sexos en la mayoría de los grupos de edad.
