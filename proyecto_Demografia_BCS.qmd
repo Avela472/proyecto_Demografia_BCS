@@ -12,15 +12,24 @@ editor: visual
 ```{r}
 # 1. Remover los objetos
 rm(list = ls())
+
+# 2. Definir repositorio (por si instalas paquetes después)
 options(repos = c(CRAN = "https://cloud.r-project.org"))
-# 2. Instalar paquetes 
-install.packages("data.table", 
-                 dependencies = T)
+
+# 3. Instalar paquetes 
+install.packages("data.table", dependencies = TRUE)
+
 library(data.table)
 
-# 3. Descargar tablas de datos
-pop <- fread("https://repodatos.atdt.gob.mx/CONAPO/proyecciones/00_Pob_Mitad_1950_2070.csv")
+# 4. Leer archivo LOCAL (ya descargado)
+pop <- fread("00_Pob_Mitad_1950_2070.csv")
 
+# Verificar que cargó
+
+
+```
+
+```{r}
 # 4. Exploración de la tabla de población
 table(pop$ENTIDAD)
 table(pop$CVE_GEO)
@@ -32,9 +41,11 @@ sum(pop$POBLACION)
 
 ![](images/clipboard-9133593.png)
 
-#Piramide poblacional del estado (parrafo con breve analisis de la piramide)
+#Piramide poblacional
 
 ```{r}
+library(data.table)
+
 BCS<- pop[ENTIDAD == "Baja California Sur"& ANIO  == "2026" ,.(SEXO, EDAD, POBLACION) ]
 
 # 2. Cargar ggplot2
