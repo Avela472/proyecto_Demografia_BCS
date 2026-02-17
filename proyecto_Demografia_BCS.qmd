@@ -1,23 +1,44 @@
 ---
-title: "proyecto_Demografia_BCS"
-author: "VELA ESPINOSA ANDRES ALEXIS"
+title: "Trabajo Final - Demografía 9219"
+author:
+- "Montiel Ramírez Brayan"
+- "Vela Espinosa Andrés Alexis"
 format: pdf
 editor: visual 
 ---
 
-#introduccion
+## Introducción
 
-#Lectura primer objeto de la web
+El estado Baja California Sur se ubica en la mitad sur de la península de Baja California, con una extensión de aproximadamente 73,900 $km^2$ y una orografía dominada por sierras, llanuras costeras y zonas desérticas, concentrando sus principales centros urbanos en la costa, de los cuales destacan La Paz y el municipio de Los Cabos.
+
+Este estado tiene una población bastante reducida en comparación con otros estados del país (tiene una cifra censal cercana a los 798,000 habitantes en 2020) y una distribución de población que tiende a ser joven: el promedio de edad está alrededor de los treinta años. De hecho la edad media se sitúa alrededor de los 29–30 años, por lo que hay muchas personas en edad de trabajar y estudiar; eso se nota en la oferta de servicios (hoteles, restaurantes, construcción) y en la llegada de gente joven buscando empleo. Esto también es coherente con una mayor concentración de personas en edades productivas entre 20 y 39 años. Estos factores hacen que la dinámica poblacional se vea bastante influida por la migración interna y el crecimiento relacionado con el turismo. De hecho, Baja California Sur tiene una proporción notable de personas que nacieron en otros estados de la República (más de 300,000), lo que explica en parte la mezcla cultural y la rápida expansión de algunas ciudades costeras.
+
+En temporada alta turística muchas zonas (sobre todo en Los Cabos) se llenan de visitantes y trabajadores temporales: el flujo de pasajeros en el aeropuerto refleja cómo la población efectiva del lugar puede multiplicarse por meses. Esto se traduce en picos de demanda de vivienda, servicios y empleo en ciertos meses del año.
+
+La economía del estado está orientada al turismo y a otros servicios vinculados como: hospitalidad, transporte y comercio, y actividades como la pesca y la actividad portuaria; estos sectores explican gran parte del empleo y del ingreso per cápita del estado, así como algunas fluctuaciones de la población y la demanda de servicios.
+
+
+Aunque el total de habitantes es pequeño comparado con otros estados, la distribución por sexo en el censo 2020 mostró una proporción bastante equilibrada entre hombres y mujeres, y la mayor parte de la población vive en áreas urbanas como La Paz y Los Cabos.
+
+Un punto que suele aparecer en las noticias es la presión sobre recursos como el agua en municipios turísticos. El rápido crecimiento urbano y la priorización de infraestructuras para el turismo han generado problemas de acceso y desigualdad en algunos lugares, lo cual afecta la calidad de vida de quienes se mudan buscando trabajo.
+
+En resumen, aparte de ser un estado con mucha actividad turística, es un lugar donde la población cambia según la temporada, donde llega mucha gente de otras partes de México y donde las ciudades costeras concentran la mayor parte de las oportunidades y servicios.
+
+
+
+## Lectura primer objeto de la web
+
+Lectura de la tabla de la población a mitad de año de las estimaciones-proyecciones de población de México.
 
 ```{r}
 # 1. Remover los objetos
 rm(list = ls())
 
-# 2. Definir repositorio (por si instalas paquetes después)
+# 2. Definir repositorio
 options(repos = c(CRAN = "https://cloud.r-project.org"))
 
 # 3. Instalar paquetes 
-install.packages("data.table", dependencies = TRUE)
+#install.packages("data.table", dependencies = TRUE)
 
 library(data.table)
 
@@ -41,7 +62,7 @@ sum(pop$POBLACION)
 
 ![](images/clipboard-9133593.png)
 
-#Piramide poblacional
+## Piramide poblacional
 
 ```{r}
 library(data.table)
@@ -76,7 +97,7 @@ ggplot(pop_bcs, aes(x = EDAD, y = POBLACION, fill = SEXO)) +
 
 ```
 
-##lectura de tabla
+## Lectura de tabla
 
 El estado aún presenta una población relativamente joven, con mayor concentración en los grupos de edad entre 20 y 39 años, lo que refleja una base importante de población en edad productiva. Se observa una disminución en la tasa de natalidad en comparación con años anteriores, así como una menor proporción de población en edades avanzadas, aunque el grupo de adultos mayores comienza a incrementarse.
 
